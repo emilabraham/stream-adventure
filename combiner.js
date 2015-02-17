@@ -1,10 +1,8 @@
 var combine = require('stream-combiner');
 var split = require('split');
 var through = require('through');
+var zlib - require('zlib');
 
 module.exports = function () {
-  process.stdin.pipe(split()).pipe(through(function (line) {
-    console.log(line);
-  }));
-  return combine(process.stdin, split, process.stdout);
+  return combine(process.stdin, split(JSON.parse), process.stdout);
 }
