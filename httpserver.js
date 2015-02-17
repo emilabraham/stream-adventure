@@ -1,8 +1,12 @@
 var http = require('http');
-var fs = require('fs');
+var through = require('through');
 
 var server = http.createServer(function (request, response) {
   if (request.method === 'POST') {
-    console.log(request.body);
+    request.pipe(through(function (buffer) {
+      this.queue(buffer.toString().toUpperCase());
+    })).pipe(response);
   }
+  response.end('send me a POST\n');
 });
+server.listen(process.argv[2]);
