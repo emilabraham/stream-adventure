@@ -20,24 +20,3 @@ parser.on('entry', function (e) {
 
 
 process.stdin.pipe(cryptstream).pipe(gunzip).pipe(parser);
-
-/*var crypto = require('crypto')
-  , concat = require('concat-stream')
-  , zlib   = require('zlib')
-  , tar    = require('tar')
-  , concat = require('concat-stream')
-  , parser = tar.Parse()
-  , stream = crypto.createDecipher(process.argv[2], process.argv[3])
-
-  parser.on('entry', function (e) {
-  if (e.type != 'File') return
-
-  e.pipe(crypto.createHash('md5', { encoding: 'hex' }))
-  .pipe(concat(function (hex) {
-  console.log(hex, e.path)
-  }))
-  })
-
-  process.stdin.pipe(stream)
-  .pipe(zlib.createGunzip())
-  .pipe(parser)*/
